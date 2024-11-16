@@ -1,0 +1,45 @@
+.Fullscreen:hover{
+    cursor: pointer;
+}
+
+.menu-link:hover{
+    cursor: pointer;
+}
+
+.sidebar .nav.sub-menu .active .nav-link{
+    color: #b66dff;
+}
+
+.loading {
+    display: none;
+    background: var(--background);
+    text-align: center;
+    padding: 15px;
+  }
+
+  .error-message {
+    display: none;
+    color: white;
+    background: #ed3c0d;
+    text-align: left;
+    padding: 15px;
+    font-weight: 600;
+  }
+
+  .modal-body p{
+    margin: 0px;
+  }
+
+  .modal-body div{
+    margin-bottom: 15px;
+  }
+
+  .biker:hover{
+    background-color: rgba(128, 128, 128, 0.195);
+    transition: 100ms;
+    cursor: pointer;
+  }
+
+  .btn i{
+    font-size: 20px;
+  }

@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Tuma Mina Admin Dashboard</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="assets/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/customStyle.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="assets/images/logo.png" />
+  </head>
+  <body>
+      <!-- partial:partials/_navbar.html -->
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+          <a class="navbar-brand brand-logo" href="index.html"><img src="assets/images/logo.png" alt="logo" /></a>
+          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.png" alt="logo" /></a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-stretch">
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-menu"></span>
+          </button>
+        
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item nav-profile dropdown">
+              <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="nav-profile-img">
+                  <img id="pp1" src="assets/images/faces/face1.jpg" alt="image">
+                  <span class="availability-status online"></span>
+                </div>
+                <div class="nav-profile-text">
+                  <p class="mb-1 text-black" id="name1"></p>
+                  <p class="mb-1 text-black" style="font-size: smaller;" id="signed-user"></p>
+                </div>
+              </a>
+              <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                <!-- <a class="dropdown-item" href="#">
+                  <i class="mdi mdi-cached me-2 text-success"></i> My Account </a>
+                <div class="dropdown-divider"></div> -->
+                <a class="dropdown-item" id="userLogout">
+                  <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
+              </div>
+            </li>
+            <li class="nav-item d-none d-lg-block full-screen-link">
+              <a class="nav-link" style="display: flex; align-items: center;justify-content: center;">
+                <i class="mdi mdi-fullscreen Fullscreen" style="display: flex;align-items: center;" id="fullscreen-button">
+                  <p style="padding: 0px;margin: 0;">Fullscreen</p>
+                </i>
+              </a>
+            </li>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="mdi mdi-menu"></span>
+            </button>
+        </div>
+      </nav>
+
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item nav-profile">
+              <a class="nav-link">
+                <div class="nav-profile-image">
+                  <img id="pp2" src="assets/images/faces/face1.jpg" alt="profile" />
+                  <span class="login-status online"></span>
+                  <!--change to offline or busy as needed-->
+                </div>
+                <div class="nav-profile-text d-flex flex-column">
+                  <span class="font-weight-bold mb-2" id="name2"></span>
+                  <span class="text-secondary text-small" id="accType"></span>
+                </div>
+                <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+              </a>
+            </li>
+            <li class="nav-item menu-item active" data-target="dashB">
+              <a class="nav-link">
+                <span class="menu-title">Dashboard</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+                <span class="menu-title">Deliveries</span>
+                <i class="mdi mdi-file-document menu-icon"></i>
+              </a>
+              <div class="collapse" id="icons">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item menu-item" data-target="all_Dels">
+                    <a class="nav-link menu-link">All</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="collapse" id="icons">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item menu-item" data-target="P_Dels">
+                    <a class="nav-link menu-link">Pending</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="collapse" id="icons">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item menu-item" data-target="IT_Dels">
+                    <a class="nav-link menu-link">In Transit</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="collapse" id="icons">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item menu-item" data-target="del">
+                    <a class="nav-link menu-link">Delivered</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#forms" aria-expanded="false" aria-controls="forms">
+                <span class="menu-title">Users</span>
+                <i class="mdi mdi-account-group menu-icon"></i>
+              </a>
+              <div class="collapse" id="forms">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item menu-item" data-target="admin_acc">
+                    <a class="nav-link menu-link">Admin Accounts</a>
+                  </li>
+                  <li class="nav-item menu-item" data-target="biker_acc">
+                    <a class="nav-link menu-link">Biker Accounts</a>
+                  </li>
+                  <li class="nav-item menu-item" data-target="pub_acc">
+                    <a class="nav-link menu-link">Public Accounts</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+
+          <!-- View delivery modal -->
+          <div class="modal fade bd-example-modal-sm" id="myModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalCenterTitle">Task Details</h5>
+                  <button type="button" class="close btn" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>    
+                <div class="modal-body d-flex" style="flex-wrap: wrap;" id="viewTaskContainer">
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Delete Modal -->
+          <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content" id="deleteTaskContainer">
+                
+              </div>
+            </div>
+          </div>
+
+          <!--Dispatch Modal -->
+        <div class="modal fade" id="dispatchTaskMod" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Dispatch Task</h5>
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" id="dispatchBikers">
+                
+              </div>
+              <div class="loading" id="loading" style="align-items: center;">
+                <div class="spinner-border text-success" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <p style="margin: 0px; padding-left: 10px;">Loading please wait</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeDispatch">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Edit user modal -->
+        <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content" id="editUserModalContent">
+              
+            </div>
+          </div>
+        </div>
+
+          <div class="content-wrapper d-block" id="dashB">
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                  <i class="mdi mdi-home"></i>
+                </span> Dashboard
+              </h3>
+              <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="row">
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-danger card-img-holder text-white">
+                  <div class="card-body">
+                    <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                    <h4 class="font-weight-normal mb-3">All Deliveries <i class="mdi mdi-chart-line mdi-24px float-end"></i>
+                    </h4>
+                    <h2 class="mb-5" id="delCount">0</h2>
+                    <!-- <h6 class="card-text">Increased by 60%</h6> -->
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-info card-img-holder text-white">
+                  <div class="card-body">
+                    <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                    <h4 class="font-weight-normal mb-3">All User Accounts <i class="mdi mdi-bookmark-outline mdi-24px float-end"></i>
+                    </h4>
+                    <h2 class="mb-5" id="userCount">0</h2>
+                    <!-- <h6 class="card-text">Decreased by 10%</h6> -->
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-success card-img-holder text-white">
+                  <div class="card-body">
+                    <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                    <h4 class="font-weight-normal mb-3">All Bikers <i class="mdi mdi-diamond mdi-24px float-end"></i>
+                    </h4>
+                    <h2 class="mb-5" id="bikerCount">0</h2>
+                    <!-- <h6 class="card-text">Increased by 5%</h6> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Deliveries Chart</h4>
+                    <div class="doughnutjs-wrapper d-flex justify-content-center">
+                      <canvas id="traffic-chart"></canvas>
+                    </div>
+                    <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Payment Methods chart</h4>
+                    <div class="doughnutjs-wrapper d-flex justify-content-center">
+                      <canvas id="doughnutChart"></canvas>
+                    </div>
+                    <div id="doughnutChart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title text-dark">Todo List</h4>
+                    <div class="add-items d-flex">
+                      <input type="text" class="form-control todo-list-input" placeholder="What do you need to do today?">
+                      <button class="add btn btn-gradient-primary font-weight-bold todo-list-add-btn" id="add-task">Add</button>
+                    </div>
+                    <div class="list-wrapper">
+                      <ul class="d-flex flex-column-reverse todo-list todo-list-custom">
+                      
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-wrapper d-none" id="all_Dels">
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                  <i class="mdi mdi-file-document"></i>
+                </span> All Deliveries <span class="badge badge-gradient-info" id="allDelsBadgeCnt">0</span>
+              </h3>
+              <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="row">
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div style="height: 70vh; overflow: scroll;"  class="card-body">
+                    <!-- <h4 class="card-title">Recent Deliveries</h4> -->
+                    <div class="table-responsive">
+                      <table class="table table-hover table-striped">
+                        <thead>
+                          <tr>
+                            <th> # </th>
+                            <th> Assignee </th>
+                            <th> Customer </th>
+                            <th> Status </th>
+                            <th> Placed </th>
+                            <th> Dispatch </th>
+                            <th> Details </th>
+                            <th> Delete </th>
+                          </tr>
+                        </thead>
+                        <tbody id="allDelsTable">
+                        
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-wrapper d-none" id="P_Dels">
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                  <i class="mdi mdi-file-document"></i>
+                </span> Pending Deliveries <span class="badge badge-gradient-info" id="PBadgeCnt">0</span>
+              </h3>
+              <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="row">
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div style="height: 70vh; overflow: scroll;"  class="card-body">
+                    <!-- <h4 class="card-title">Recent Deliveries</h4> -->
+                    <div class="table-responsive">
+                      <table class="table table-hover table-striped">
+                        <thead>
+                          <tr>
+                            <th> # </th>
+                            <th> Assignee </th>
+                            <th> Customer </th>
+                            <th> Status </th>
+                            <th> Placed </th>
+                            <th> Dispatch </th>
+                            <th> Details </th>
+                            <th> Delete </th>
+                          </tr>
+                        </thead>
+                        <tbody id="allPTable">
+                        
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-wrapper d-none" id="IT_Dels">
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                  <i class="mdi mdi-file-document"></i>
+                </span> In Transit Deliveries <span class="badge badge-gradient-info" id="ITBadgeCnt">0</span>
+              </h3>
+              <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="row">
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div style="height: 70vh; overflow: scroll;"  class="card-body">
+                    <!-- <h4 class="card-title">Recent Deliveries</h4> -->
+                    <div class="table-responsive">
+                      <table class="table table-hover table-striped">
+                        <thead>
+                          <tr>
+                            <th> # </th>
+                            <th> Assignee </th>
+                            <th> Customer </th>
+                            <th> Status </th>
+                            <th> Placed </th>
+                            <th> Details </th>
+                            <th> Delete </th>
+                          </tr>
+                        </thead>
+                        <tbody id="allITTable">
+                        
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-wrapper d-none" id="del">
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                  <i class="mdi mdi-file-document"></i>
+                </span> Delivered <span class="badge badge-gradient-info" id="deliveredBadgeCnt">0</span>
+              </h3>
+              <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="row">
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div style="height: 70vh; overflow: scroll;"  class="card-body">
+                    <!-- <h4 class="card-title">Recent Deliveries</h4> -->
+                    <div class="table-responsive">
+                      <table class="table table-hover table-striped">
+                        <thead>
+                          <tr>
+                            <th> # </th>
+                            <th> Assignee </th>
+                            <th> Customer </th>
+                            <th> Status </th>
+                            <th> Placed </th>
+                            <th> Details </th>
+                            <th> Delete </th>
+                          </tr>
+                        </thead>
+                        <tbody id="allDeliveredTable">
+                        
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-wrapper d-none" id="admin_acc">
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                  <i class="mdi mdi-file-document"></i>
+                </span> Admin Accounts <span class="badge badge-gradient-info" id="adminBadgeCnt">0</span>
+              </h3>
+              <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="row">
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div style="height: 70vh; overflow: scroll;" class="card-body">
+                    <!-- <h4 class="card-title">Recent Deliveries</h4> -->
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th> # </th>
+                            <th> Photo </th>
+                            <th> Name </th>
+                            <th> Email </th>
+                            <th> Phone </th>
+                            <th> Address </th>
+                            <th> Edit </th>
+                          </tr>
+                        </thead>
+                        <tbody id="adminsTable">
+                        
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-wrapper d-none" id="biker_acc">
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                  <i class="mdi mdi-file-document"></i>
+                </span> Biker Accounts <span class="badge badge-gradient-info" id="bikerBadgeCnt">0</span>
+              </h3>
+              <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="row">
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div style="height: 70vh; overflow: scroll;" class="card-body">
+                    <!-- <h4 class="card-title">Recent Deliveries</h4> -->
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th> # </th>
+                            <th> Photo </th>
+                            <th> Name </th>
+                            <th> Email </th>
+                            <th> Phone </th>
+                            <th> Bike Number </th>
+                            <th> Deliveries </th>
+                            <th> Address </th>
+                            <th> Edit </th>
+                          </tr>
+                        </thead>
+                        <tbody id="bikersTable">
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-wrapper d-none" id="pub_acc">
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                  <i class="mdi mdi-file-document"></i>
+                </span> General Accounts <span class="badge badge-gradient-info" id="publicBadgeCnt">0</span>
+              </h3>
+              <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="row">
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div style="height: 70vh; overflow: scroll;" class="card-body">
+                    <!-- <h4 class="card-title">Recent Deliveries</h4> -->
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th> # </th>
+                            <th> Photo </th>
+                            <th> Name </th>
+                            <th> Email </th>
+                            <th> Phone </th>
+                            <th> Address </th>
+                            <th> Edit </th>
+                          </tr>
+                        </thead>
+                        <tbody id="generalTable">
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <script>document.write(new Date().getFullYear())</script> <a href="https://www.google.com/" target="_blank">Tuma Mina Logtix</a>. All rights reserved.</span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="assets/vendors/chart.js/chart.umd.js"></script>
+    <script src="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="assets/js/off-canvas.js"></script>
+    <script src="assets/js/misc.js"></script>
+    <script src="assets/js/settings.js"></script>
+    <script src="assets/js/todolist.js"></script>
+    <script src="assets/js/jquery.cookie.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+     <!-- Dashboard script -->
+
+    <script src="assets/js/main.js"></script>
+    <!-- End custom js for this page -->
+    <script type='module'>
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+      import { getDatabase, set, ref, update, onValue, push, remove } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+      import { getStorage, ref as storageRef, uploadBytes, getDownloadURL, uploadBytesResumable  } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+      import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut  } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+  
+      const firebaseConfig = {
+          apiKey: "AIzaSyBdeM24jxnOiujDbudFqzCB4eMigMhYNGs",
+          authDomain: "tumamina-e39e7.firebaseapp.com",
+          databaseURL: "https://tumamina-e39e7-default-rtdb.firebaseio.com",
+          projectId: "tumamina-e39e7",
+          storageBucket: "tumamina-e39e7.appspot.com",
+          messagingSenderId: "174519128936",
+          appId: "1:174519128936:web:dafd01409927bb693dbcdd"
+      };
+  
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+      const auth = getAuth(app);
+      const storage = getStorage(app);
+
+      var userProfile = '';
+      var userID = '';
+      var myBikers;
+      var allMyOrders;
+
+      onAuthStateChanged(auth, (user) => {
+        if(user){
+          var uid = user.uid;
+          var myEmail = user.email;
+          userID = uid;
+          console.log(myEmail)
+
+          document.getElementById('signed-user').innerHTML = myEmail;
+        }else{
+          window.location.href = 'login.html'
+        }
+      })
+
+    // View modalfor task
+    function showTaskModal(modalID) {
+      const myModalEl = document.getElementById(modalID);
+      const modal = new bootstrap.Modal(myModalEl);
+      modal.show();
+    }
+
+  // Get the signed in user details
+    const userAccount = ref(database, "users");
+    onValue(userAccount, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const dataObject = Object.keys(data)
+            .map(key => ({
+                id: key,
+                ...data[key]
+        }));
+
+        const myProfile = dataObject.filter((item) => item.userId == userID);
+        userProfile = myProfile[0];
+
+        document.getElementById('name1').innerHTML = myProfile[0].username;
+        document.getElementById('name2').innerHTML = myProfile[0].username;
+        document.getElementById('accType').innerHTML = myProfile[0].accountType + " Account";
+        if(myProfile[0].profilePicture != ""){
+          document.getElementById('pp1').src = myProfile[0].profilePicture;
+          document.getElementById('pp2').src = myProfile[0].profilePicture;
+        } else {
+          document.getElementById('pp1').src = "assets/images/faces-clipart/pic-3.png";
+          document.getElementById('pp2').src = "assets/images/faces-clipart/pic-3.png";
+        }
+
+        localStorage.setItem("userProfile", JSON.stringify(myProfile[0]));
+      }
+    });
+
+    onValue(ref(database, '/users'), async(snapshot) => {
+      const data = snapshot.val();
+
+      if (data) {
+        const dataObjectsArray = Object.keys(data)
+            .map(key => ({
+                id: key,
+                ...data[key]
+        }));
+
+        const admins = dataObjectsArray.filter((item) => item.accountType == "Admin")
+        const general = dataObjectsArray.filter((item) => item.accountType == "Public")
+        const bikers = dataObjectsArray.filter((item) => item.accountType == "Biker")
+        myBikers = await bikers;
+
+        document.getElementById("userCount").innerHTML = dataObjectsArray.length;
+        document.getElementById("bikerCount").innerHTML = bikers.length;
+        document.getElementById("bikerBadgeCnt").innerHTML = bikers.length;
+        document.getElementById("adminBadgeCnt").innerHTML = admins.length;
+        document.getElementById("publicBadgeCnt").innerHTML = general.length;
+
+        document.getElementById("bikersTable").innerHTML = 
+          bikers
+            .map((item) => {
+              return `
+              <tr>
+                <td>
+                  ${bikers.indexOf(item) + 1}
+                </td>
+                <td>
+                  <img src="${item.profilePicture != "" ? item.profilePicture : "assets/images/faces-clipart/pic-4.png"}" class="me-2" alt="image">
+                </td>
+                <td> ${item.username} </td>
+                <td>
+                ${item.useremail}
+                </td>
+                <td> ${item.usernumber || "-- --"} </td>
+                <td> ${item.bikeNo || "-- --"} </td>
+                <td> ${item.deliveries} </td>
+                <td> 
+                  ${item.userAddress || "-- --"}
+                </td>
+                 <td> 
+                    <button type="button" class="btn-sm btn btn-gradient-success btn-rounded btn-icon editUser" id="${item.id}" data-bs-toggle="modal" data-bs-target="#editUserModal">
+                      <i class="mdi mdi-account-edit editUser" id="${item.id}"></i>
+                    </button> 
+                 </td>
+              </tr>
+            `;
+            }).join("");
+
+        document.getElementById("adminsTable").innerHTML = 
+          admins
+            .map((item) => {
+              return `
+              <tr>
+                <td>
+                  ${admins.indexOf(item) + 1}
+                </td>
+                <td>
+                  <img src="${item.profilePicture != "" ? item.profilePicture : "assets/images/faces-clipart/pic-4.png"}" class="me-2" alt="image">
+                </td>
+                <td> ${item.username} </td>
+                <td>
+                ${item.useremail}
+                </td>
+                <td> ${item.usernumber || "-- --"} </td>
+                <td> 
+                  ${item.userAddress || "-- --"}
+                </td>
+                 <td> 
+                    <button type="button" class="btn-sm btn btn-gradient-success btn-rounded btn-icon editUser" id="${item.id}" data-bs-toggle="modal" data-bs-target="#editUserModal">
+                      <i class="mdi mdi-account-edit editUser" id="${item.id}"></i>
+                    </button> 
+                 </td>
+              </tr>
+            `;
+            }).join("");
+
+        document.getElementById("generalTable").innerHTML = 
+          general
+            .map((item) => {
+              return `
+              <tr>
+                <td>
+                  ${general.indexOf(item) + 1}
+                </td>
+                <td>
+                  <img src="${item.profilePicture != "" ? item.profilePicture : "assets/images/faces-clipart/pic-4.png"}" class="me-2" alt="image">
+                </td>
+                <td> ${item.username} </td>
+                <td>
+                ${item.useremail}
+                </td>
+                <td> ${item.usernumber || "-- --"} </td>
+                <td> 
+                  ${item.userAddress || "-- --"}
+                </td>
+                 <td> 
+                    <button type="button" class="btn-sm btn btn-gradient-success btn-rounded btn-icon editUser" id="${item.id}" data-bs-toggle="modal" data-bs-target="#editUserModal">
+                      <i class="mdi mdi-account-edit editUser" id="${item.id}"></i>
+                    </button> 
+                 </td>
+              </tr>
+            `;
+            }).join("");
+
+          // Edit a user account
+        var editUserAcc = document.querySelectorAll(".editUser");
+            for (let editUser of editUserAcc) {
+              editUser.addEventListener("click", (e) => {
+                let user_id = e.target.id;
+
+                dataObjectsArray.map((item) => {
+                  if(item.id == user_id){
+                    document.getElementById('editUserModalContent').innerHTML = `
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit user account</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                          <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">User Name:</label>
+                            <input type="text" class="form-control" id="recipient-name" value="${item.username}">
+                          </div>
+                          <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">User Email:</label>
+                            <input disabled type="text" class="form-control" id="recipient-email" value="${item.useremail}">
+                          </div>
+                          <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">User Phone:</label>
+                            <input type="text" class="form-control" id="recipient-phone" value="${item.usernumber}">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect2">Account Type</label>
+                            <select class="form-select" id="recipient-type">
+                              <option value="${item.accountType}">${item.accountType}</option>
+                              <option value="Admin">Admin</option>
+                              <option value="Biker">Biker</option>
+                              <option value="Public">Public</option>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Bike Number:</label>
+                            <input type="text" class="form-control" id="bike-no" value="${item.bikeNo}">
+                          </div>
+                          <div class="form-group">
+                            <label for="message-text" class="col-form-label">Address:</label>
+                            <textarea class="form-control" id="address-text" value="${item.username}"></textarea>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="loading" id="loading" style="align-items: center;">
+                          <div class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                          <p style="margin: 0px; padding-left: 10px;">Loading please wait</p>
+                        </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="closeEdit" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary updateUser" id="${item.id}">Update</button>
+                      </div>
+                    `;
+
+                    var confirmEdit = document.querySelectorAll(".updateUser");
+                      for (let editBtn of confirmEdit) {
+                        editBtn.addEventListener("click", (e) => {
+                          let task_id = e.target.id;
+                          document.getElementById('loading').classList.add('d-flex');
+
+                          update(ref(database, 'users/' + task_id), {
+                          username: document.getElementById('recipient-name').value,
+                          usernumber: document.getElementById('recipient-phone').value,
+                          accountType: document.getElementById('recipient-type').value,
+                          bikeNo: document.getElementById('bike-no').value,
+                          userAddress: document.getElementById('address-text').value,
+
+                        }).then(() => {
+                          document.getElementById('loading').classList.remove('d-flex');
+                          document.getElementById('closeEdit').click();
+
+                          alert("Account edited succesfully!")
+                          document.getElementById('recipient-name').value = '';
+                          document.getElementById('recipient-phone').value = '';
+                          document.getElementById('recipient-phone').value = '';
+                          document.getElementById('bike-no').value = '';
+                          document.getElementById('address-text').value = '';
+                        }).catch((error) => {
+                            let errorMessage = error.message.replace(/[()]/g, " ");
+                            let errorMsg = errorMessage.replace('Firebase:', "");
+                            document.getElementById('loading').classList.remove('d-flex');
+                            alert("unsuccessful, Error: " +errorMsg);
+                          });
+                      })
+                    }
+                  }
+                })
+
+              })
+            }
+      }
+    })
+
+    onValue(ref(database, '/Orders'), (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+        const dataObjectsArray = Object.keys(data)
+            .map(key => ({
+                id: key,
+                ...data[key]
+        }));
+
+        allMyOrders = dataObjectsArray;
+        const pDels = dataObjectsArray.filter((item) => item.orderStatus == "Pending");
+        const iTDels = dataObjectsArray.filter((item) => item.orderStatus == "In Transit");
+        const Dels = dataObjectsArray.filter((item) => item.orderStatus == "Delivered");
+
+        document.getElementById("delCount").innerHTML = dataObjectsArray.length;
+        document.getElementById("allDelsBadgeCnt").innerHTML = dataObjectsArray.length;
+        document.getElementById("PBadgeCnt").innerHTML = pDels.length;
+        document.getElementById("ITBadgeCnt").innerHTML = iTDels.length;
+        document.getElementById("deliveredBadgeCnt").innerHTML = Dels.length;
+
+        // All deliveries table
+        document.getElementById("allDelsTable").innerHTML = 
+          dataObjectsArray
+            .map((item) => {
+              return `
+                <tr>
+                  <td>${dataObjectsArray.indexOf(item) + 1}</td>
+                  <td>
+                    <img src="assets/images/faces-clipart/pic-3.png" class="me-2" alt="image"> ${item.biker || "-- --"}
+                  </td>
+                  <td> ${item.customerName || "-- --"} </td>
+                  <td>
+                    ${
+                      item.orderStatus == "Delivered" ? '<label class="badge badge-gradient-success">DELIVERED</label>' : 
+                      item.orderStatus == "In Transit" ? '<label class="badge badge-gradient-info">IN TRANSIT</label>' : 
+                      item.orderStatus == "Pending" ? '<label class="badge badge-gradient-danger">PENDING</label>' : 
+                      '<label class="badge badge-gradient-warning">ARRIVED</label>'
+                    }
+                  </td>
+                  <td> ${new Date(item.orderDate).toUTCString() || "-- --"} </td>
+                  ${item.orderStatus != "Pending" ? (
+                    `
+                    <td> 
+                      <button disabled type="button" class="btn-sm btn btn-gradient-info btn-rounded btn-icon dispatch" id='${item.id}' data-bs-toggle="modal" data-bs-target="#dispatchTaskMod">
+                        <i class="mdi mdi-share dispatch" id='${item.id}'></i>
+                      </button> 
+                    </td>
+                    `
+                  ):(
+                    `
+                    <td> 
+                      <button type="button" class="btn-sm btn btn-gradient-info btn-rounded btn-icon dispatch" id='${item.id}' data-bs-toggle="modal" data-bs-target="#dispatchTaskMod">
+                        <i class="mdi mdi-share dispatch" id='${item.id}'></i>
+                      </button> 
+                    </td>
+                    `
+                  )}
+                  <td> 
+                    <button type="button" class="btn-sm btn btn-gradient-success btn-rounded btn-icon viewTaskSingle" id="${item.id}" data-bs-toggle="modal" data-bs-target="#myModal">
+                      <i class="mdi mdi-eye viewTaskSingle" id="${item.id}"></i>
+                    </button> 
+                  </td>
+                  <td> 
+                    <button type="button" class="btn-sm btn btn-gradient-danger btn-rounded btn-icon delete" id='${item.id}' data-bs-toggle="modal" data-bs-target="#deleteModal">
+                      <i class="mdi mdi-trash-can delete" id='${item.id}'></i>
+                    </button> 
+                  </td>
+                </tr>
+            `;
+            }).join("");
+
+        // Pending deliveries
+        document.getElementById("allPTable").innerHTML = 
+          pDels
+            .map((item) => {
+              if(item.orderStatus == 'Pending'){
+                return `
+                  <tr>
+                    <td>${pDels.indexOf(item) + 1}</td>
+                    <td>
+                      <img src="assets/images/faces-clipart/pic-3.png" class="me-2" alt="image"> ${item.biker || "-- --"}
+                    </td>
+                    <td> ${item.customerName || "-- --"} </td>
+                    <td>
+                      ${
+                        item.orderStatus == "Delivered" ? '<label class="badge badge-gradient-success">DELIVERED</label>' : 
+                        item.orderStatus == "In Transit" ? '<label class="badge badge-gradient-info">IN TRANSIT</label>' : 
+                        item.orderStatus == "Pending" ? '<label class="badge badge-gradient-danger">PENDING</label>' : 
+                        '<label class="badge badge-gradient-warning">ARRIVED</label>'
+                      }
+                    </td>
+                    <td> ${new Date(item.orderDate).toUTCString() || "-- --"} </td>
+                    <td> 
+                      <button type="button" class="btn-sm btn btn-gradient-info btn-rounded btn-icon dispatch" id='${item.id}' data-bs-toggle="modal" data-bs-target="#dispatchTaskMod">
+                        <i class="mdi mdi-share dispatch" id='${item.id}'></i>
+                      </button> 
+                    </td>
+                    <td> 
+                      <button type="button" class="btn-sm btn btn-gradient-success btn-rounded btn-icon viewTaskSingle" id="${item.id}" data-bs-toggle="modal" data-bs-target="#myModal">
+                        <i class="mdi mdi-eye viewTaskSingle" id="${item.id}"></i>
+                      </button> 
+                    </td>
+                    <td> 
+                      <button type="button" class="btn-sm btn btn-gradient-danger btn-rounded btn-icon delete" id='${item.id}' data-bs-toggle="modal" data-bs-target="#deleteModal">
+                        <i class="mdi mdi-trash-can delete" id='${item.id}'></i>
+                      </button> 
+                    </td>
+                  </tr>
+              `;
+              } else {
+                return ``;
+              }
+            }).join("");
+
+        // In Transit deliveries
+        document.getElementById("allITTable").innerHTML = 
+          iTDels
+            .map((item) => {
+              if(item.orderStatus == "In Transit"){
+                return `
+                <tr>
+                  <td>${iTDels.indexOf(item) + 1}</td>
+                  <td>
+                    <img src="assets/images/faces-clipart/pic-3.png" class="me-2" alt="image"> ${item.biker || "-- --"}
+                  </td>
+                  <td> ${item.customerName || "-- --"} </td>
+                  <td>
+                    ${
+                      item.orderStatus == "Delivered" ? '<label class="badge badge-gradient-success">DELIVERED</label>' : 
+                      item.orderStatus == "In Transit" ? '<label class="badge badge-gradient-info">IN TRANSIT</label>' : 
+                      item.orderStatus == "Pending" ? '<label class="badge badge-gradient-danger">PENDING</label>' : 
+                      '<label class="badge badge-gradient-warning">ARRIVED</label>'
+                    }
+                  </td>
+                  <td> ${new Date(item.orderDate).toUTCString() || "-- --"} </td>
+                  <td> 
+                    <button type="button" class="btn-sm btn btn-gradient-success btn-rounded btn-icon viewTaskSingle" id="${item.id}" data-bs-toggle="modal" data-bs-target="#myModal">
+                      <i class="mdi mdi-eye viewTaskSingle" id="${item.id}"></i>
+                    </button> 
+                  </td>
+                  <td> 
+                    <button type="button" class="btn-sm btn btn-gradient-danger btn-rounded btn-icon delete" id='${item.id}' data-bs-toggle="modal" data-bs-target="#deleteModal">
+                      <i class="mdi mdi-trash-can delete" id='${item.id}'></i>
+                    </button> 
+                  </td>
+                </tr>
+            `;
+              } else {
+                return ``;
+              }
+            }).join("");
+
+        // Delivered deliveries
+        document.getElementById("allDeliveredTable").innerHTML = 
+          Dels
+            .map((item) => {
+              if(item.orderStatus == "Delivered"){
+                return `
+                <tr>
+                  <td>${Dels.indexOf(item) + 1}</td>
+                  <td>
+                    <img src="assets/images/faces-clipart/pic-3.png" class="me-2" alt="image"> ${item.biker || "-- --"}
+                  </td>
+                  <td> ${item.customerName || "-- --"} </td>
+                  <td>
+                    ${
+                      item.orderStatus == "Delivered" ? '<label class="badge badge-gradient-success">DELIVERED</label>' : 
+                      item.orderStatus == "In Transit" ? '<label class="badge badge-gradient-info">IN TRANSIT</label>' : 
+                      item.orderStatus == "Pending" ? '<label class="badge badge-gradient-danger">PENDING</label>' : 
+                      '<label class="badge badge-gradient-warning">ARRIVED</label>'
+                    }
+                  </td>
+                  <td> ${new Date(item.orderDate).toUTCString() || "-- --"} </td>
+                  <td> 
+                    <button type="button" class="btn-sm btn btn-gradient-success btn-rounded btn-icon viewTaskSingle" id="${item.id}" data-bs-toggle="modal" data-bs-target="#myModal">
+                      <i class="mdi mdi-eye viewTaskSingle" id="${item.id}"></i>
+                    </button> 
+                  </td>
+                  <td> 
+                    <button type="button" class="btn-sm btn btn-gradient-danger btn-rounded btn-icon delete" id='${item.id}' data-bs-toggle="modal" data-bs-target="#deleteModal">
+                      <i class="mdi mdi-trash-can delete" id='${item.id}'></i>
+                    </button> 
+                  </td>
+                </tr>
+            `;
+              } else {
+                return ``;
+              }
+            }).join("");
+
+        // REMOVE AN ORDER
+        var deleteTaskBtns = document.querySelectorAll(".delete");
+          for (let deletebtn of deleteTaskBtns) {
+            deletebtn.addEventListener("click", (e) => {
+              let task_id = e.target.id;
+              dataObjectsArray.map((item) => {
+                if(item.id == task_id){
+                  document.getElementById("deleteTaskContainer").innerHTML = `
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Delete Task</h5>
+                    <button type="button" class="close btn" data-bs-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to delete task with ID: ${task_id} ?
+                  </div>
+                  <div class="loading" id="loading" style="align-items: center;">
+                    <div class="spinner-border text-success" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <p style="margin: 0px; padding-left: 10px;">Loading please wait</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="closeDelete" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger deleteBtns" id="${task_id}">Proceed</button>
+                  </div>
+                  `
+                  // showTaskModal("deleteModal");
+
+                  var confirmDeleteTask = document.querySelectorAll(".deleteBtns");
+                  for (let deletebtn of confirmDeleteTask) {
+                    deletebtn.addEventListener("click", (e) => {
+                  document.getElementById('loading').classList.add('d-flex');
+
+                      let task_id = e.target.id;
+
+                      if(item.profilePicName){
+                        let deleteRef = imgRef(storage, `Images/${item.profilePicName}`);
+                        deleteObject(deleteRef).then(() => {
+                          remove(ref(database, "Orders/" + task_id))
+                          .then(() => {
+                            document.getElementById('loading').classList.remove('d-flex');
+                            alert("Task removed successfully");
+                          })
+                          .catch((error) => {
+                            let errorMessage = error.message.replace(/[()]/g, " ");
+                            let errorMsg = errorMessage.replace('Firebase:', "");
+                            document.getElementById('loading').classList.remove('d-flex');
+                            alert("unsuccessful, Error: " +errorMsg);
+                          });
+                        })
+                      } else{
+                        remove(ref(database, "Orders/" + task_id))
+                          .then(() => {
+                            alert("Task removed successfully");
+                            document.getElementById('loading').classList.remove('d-flex');
+                            document.getElementById('closeDelete').click();
+
+                          })
+                          .catch((error) => {
+                            let errorMessage = error.message.replace(/[()]/g, " ");
+                            let errorMsg = errorMessage.replace('Firebase:', "");
+                            document.getElementById('loading').classList.remove('d-flex');
+                            alert("unsuccessful, Error: " +errorMsg);
+                          });
+                      }
+                    })
+                  }
+                }
+              })
+            });
+          }
+ 
+        // View task
+        let viewTaskBtns = document.querySelectorAll(".viewTaskSingle");
+          for (let viewTaskBtn of viewTaskBtns) {
+            viewTaskBtn.addEventListener("click", (e) => {
+              let taskID = e.target.id;
+              dataObjectsArray.map(async(item) => {
+                if(item.id == taskID){
+                  document.getElementById("viewTaskContainer").innerHTML = `
+                    <div class="col-md-3">
+                      <p style="font-weight: bold; color: #16181b;">Customer Name</p>
+                      <p class="" style="color: #434a54;">${item.customerName}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p style="font-weight: bold; color: #16181b;">Order Date</p>
+                      <p class="" style="color: #434a54;">${new Date(item.orderDate).toUTCString()}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p style="font-weight: bold; color: #16181b;">Order Status</p>
+                      <p class="" style="color: #434a54;">${item.orderStatus || "-- --"}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p style="font-weight: bold; color: #16181b;">Delivery Date</p>
+                      <p class="" style="color: #434a54;">${item.deliveryDate ? (new Date(item.deliveryDate).toUTCString()): ("-- --")}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p style="font-weight: bold; color: #16181b;">Category</p>
+                      <p class="" style="color: #434a54;">${item.deliveryCat || "-- --"}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p style="font-weight: bold; color: #16181b;">Type</p>
+                      <p class="" style="color: #434a54;">${item.delType || "-- --"}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p style="font-weight: bold; color: #16181b;">Additional Information</p>
+                      <p class="" style="color: #434a54;">${item.addInfo || "-- --"}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p style="font-weight: bold; color: #16181b;">Delivery</p>
+                      <p class="" style="color: #434a54;">${item.packageName || "-- --"}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p style="font-weight: bold; color: #16181b;">Pick Up Location</p>
+                      <p class="" style="color: #434a54;">${item.pickUpRoomNo + "-- --"} ${item.pickUpLoc}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p style="font-weight: bold; color: #16181b;">Shop</p>
+                      <p class="" style="color: #434a54;">${item.shop || "-- --"}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p style="font-weight: bold; color: #16181b;">Delivery Location</p>
+                      <p class="" style="color: #434a54;">${item.delRoomNo}, ${item.delLoc}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p style="font-weight: bold; color: #16181b;">Delivery Contact</p>
+                      <p class="" style="color: #434a54;">${item.delPhone || "-- --"}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p style="font-weight: bold; color: #16181b;">Additinal Instructions</p>
+                      <p class="" style="color: #434a54;">${item.addInstr || "-- --"}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p style="font-weight: bold; color: #16181b;">Payment Method</p>
+                      <p class="" style="color: #434a54;">${item.paymentMeth}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p style="font-weight: bold; color: #16181b;">Biker</p>
+                      <p class="" style="color: #434a54;">${item.biker || "-- --"}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p style="font-weight: bold; color: #16181b;">Proof Of Delivery</p>
+                      <p class="" style="color: #434a54;">${item.proofOfDel || "-- --"}</p>
+                    </div>
+                    <div class="col-md-3">
+                      <p style="font-weight: bold; color: #16181b;">Fee</p>
+                      <p class="" style="color: #434a54;">US$ ${item.deliveryFee.toFixed(2)}</p>
+                    </div>
+                  `
+                }
+              })
+            })
+          }
+        
+        // Dispatch tasks
+        let disTaskBtns = document.querySelectorAll(".dispatch");
+          for (let disTaskBtn of disTaskBtns) {
+            disTaskBtn.addEventListener("click", (e) => {
+              let taskID = e.target.id;
+              dataObjectsArray.map(async(item) => {
+                if(item.id == taskID){
+                  document.getElementById("dispatchBikers").innerHTML = 
+                    myBikers.map((item) => {
+                      return `
+                        <div class="d-flex align-items-center biker" id='${item.id}' data-target="${item.username}">
+                          <img src="${item.profilePicture ? item.profilePicture : 'assets/images/faces-clipart/pic-3.png'}" style="width: 50px;height: 50px;borderRadius:50" class="me-2" alt="image">
+                          <div class="" style="margin: 0;">
+                              <p style="font-weight: bold; color: #16181b; margin: 0px;">${item.username}</p>
+                              <p class="" style="color: #434a54; margin: 0px;">${item.deliveries} Deliveries</p>
+                              ${item.available ? '<p class="text-success" style="margin: 0px;">Available</p>':'<p class="text-danger" style="margin: 0px;">Occupied</p>'}
+                          </div>
+                        </div>
+                      `
+                    }).join('');
+                }
+              })
+
+              let confirmDispatch = document.querySelectorAll(".biker");
+              for (let disBtn of confirmDispatch) {
+                disBtn.addEventListener("click", async(e) => {
+                  document.getElementById('loading').classList.add('d-flex');
+
+                  let bikerID = e.target.id;    
+                  let bikerName = e.target.dataset.target;  
+
+                  await update(ref(database, 'Orders/' + taskID), {
+                  biker: bikerName,
+                  dispatched: true
+                  }).then(async() => {
+                  await update(ref(database, 'users/' + bikerID), {
+                    available: false
+                  }).then(() => {
+                      alert("Task assigned to "+bikerName);
+                      document.getElementById('loading').classList.remove('d-flex');
+                      document.getElementById('closeDispatch').click();
+                  }).catch((error) => {
+                            let errorMessage = error.message.replace(/[()]/g, " ");
+                            let errorMsg = errorMessage.replace('Firebase:', "");
+                            document.getElementById('loading').classList.remove('d-flex');
+                            alert("unsuccessful, Error: " +errorMsg);
+                          });
+                  }).catch((error) => {
+                            let errorMessage = error.message.replace(/[()]/g, " ");
+                            let errorMsg = errorMessage.replace('Firebase:', "");
+                            document.getElementById('loading').classList.remove('d-flex');
+                            alert("unsuccessful, Error: " +errorMsg);
+                          });
+                })
+              }       
+            })
+          }
+      
+      // Chart data
+          (function ($) {
+            let payNowMethods = dataObjectsArray.filter((item) => item.paymentMeth == "PayNow");
+              var doughnutPieData = {
+                datasets: [{
+                  data: [payNowMethods.length, dataObjectsArray.length - payNowMethods.length],
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)'
+                  ],
+                  borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                  ],
+                }],
+
+                // These labels appear in the legend and in the tooltips when hovering different arcs
+                labels: [
+                  'PayNow',
+                  'Cash',
+                ]
+              };
+              var doughnutPieOptions = {
+                responsive: true,
+                animation: {
+                  animateScale: true,
+                  animateRotate: true
+                }
+              };
+
+              if ($("#doughnutChart").length) {
+                var doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
+                var doughnutChart = new Chart(doughnutChartCanvas, {
+                  type: 'doughnut',
+                  data: doughnutPieData,
+                  options: doughnutPieOptions
+                });
+              }
+
+              if ($("#traffic-chart").length) {
+                const ctx = document.getElementById('traffic-chart');
+
+                var graphGradient1 = document.getElementById("traffic-chart").getContext('2d');
+                var graphGradient2 = document.getElementById("traffic-chart").getContext('2d');
+                var graphGradient3 = document.getElementById("traffic-chart").getContext('2d');
+
+                var gradientStrokeBlue = graphGradient1.createLinearGradient(0, 0, 0, 181);
+                gradientStrokeBlue.addColorStop(0, 'rgba(54, 215, 232, 1)');
+                gradientStrokeBlue.addColorStop(1, 'rgba(177, 148, 250, 1)');
+                var gradientLegendBlue = 'rgba(54, 215, 232, 1)';
+
+                var gradientStrokeRed = graphGradient2.createLinearGradient(0, 0, 0, 50);
+                gradientStrokeRed.addColorStop(0, 'rgba(255, 191, 150, 1)');
+                gradientStrokeRed.addColorStop(1, 'rgba(254, 112, 150, 1)');
+                var gradientLegendRed = 'rgba(254, 112, 150, 1)';
+
+                var gradientStrokeGreen = graphGradient3.createLinearGradient(0, 0, 0, 300);
+                gradientStrokeGreen.addColorStop(0, 'rgba(6, 185, 157, 1)');
+                gradientStrokeGreen.addColorStop(1, 'rgba(132, 217, 210, 1)');
+                var gradientLegendGreen = 'rgba(6, 185, 157, 1)';
+
+                // const bgColor1 = ["rgba(54, 215, 232, 1)"];
+                // const bgColor2 = ["rgba(255, 191, 150, 1"];
+                // const bgColor3 = ["rgba(6, 185, 157, 1)"];
+
+                new Chart(ctx, {
+                  type: 'doughnut',
+                  data: {
+                    labels: [`Pending ${pDels.length}`, `In Transit ${iTDels.length}`, `Delivered ${Dels.length}`],
+                    datasets: [{
+                      data: [pDels.length, iTDels.length, Dels.length],
+                      backgroundColor: [gradientStrokeBlue, gradientStrokeGreen, gradientStrokeRed],
+                      hoverBackgroundColor: [
+                        gradientStrokeBlue,
+                        gradientStrokeGreen,
+                        gradientStrokeRed
+                      ],
+                      borderColor: [
+                        gradientStrokeBlue,
+                        gradientStrokeGreen,
+                        gradientStrokeRed
+                      ],
+                      legendColor: [
+                        gradientLegendBlue,
+                        gradientLegendGreen,
+                        gradientLegendRed
+                      ]
+                    }]
+                  },
+                  options: {
+                    cutout: 50,
+                    animationEasing: "easeOutBounce",
+                    animateRotate: true,
+                    animateScale: false,
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    showScale: true,
+                    legend: false,
+                    plugins: {
+                      legend: {
+                        display: false,
+                      }
+                    }
+                  },
+                  plugins: [{
+                    afterDatasetUpdate: function (chart, args, options) {
+                      const chartId = chart.canvas.id;
+                      var i;
+                      const legendId = `${chartId}-legend`;
+                      const ul = document.createElement('ul');
+                      for (i = 0; i < chart.data.datasets[0].data.length; i++) {
+                        ul.innerHTML += `
+                            <li>
+                              <span style="background-color: ${chart.data.datasets[0].legendColor[i]}"></span>
+                              ${chart.data.labels[i]}
+                            </li>
+                          `;
+                      }
+                      return document.getElementById(legendId).appendChild(ul);
+                    }
+                  }]
+                });
+              }
+            })(jQuery);// End of chart data
+        } //End of data
+    })
+
+    function remove_task(taskID) {
+      remove(ref(database, "Orders/" + taskID))
+      .then(() => {
+        alert("Task successfully removed");
+      })
+      .catch((error) => {
+        alert(error);
+      });
+    }
+
+    document.getElementById("userLogout").addEventListener("click", () => {
+        signOut(auth)
+          .then(() => {
+            // Sign-out successful.
+            window.location.href = "login.html";
+          })
+          .catch((error) => {
+            // An error happened.
+          });
+      });
+    </script>
+
+  </body>
+</html>

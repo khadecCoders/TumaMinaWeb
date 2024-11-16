@@ -24,8 +24,16 @@
     <link rel="shortcut icon" href="assets/images/logo.png" />
   </head>
   <body>
+    <div style="width: 100%; height: 100vh; z-index: 1000;background-color: rgb(238, 238, 238); align-items: center;justify-content: center; display: flex;" id="loadingBar">
+      <div class="">
+        <div class="spinner-border text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+
       <!-- partial:partials/_navbar.html -->
-      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row d-none" id="navBar">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
           <a class="navbar-brand brand-logo" href="index.html"><img src="assets/images/logo.png" alt="logo" /></a>
           <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.png" alt="logo" /></a>
@@ -69,8 +77,7 @@
       </nav>
 
       <!-- partial -->
-      <div class="container-fluid page-body-wrapper">
-
+      <div class="container-fluid page-body-wrapper d-none" id="bodyContainer">
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
@@ -688,6 +695,9 @@
           console.log(myEmail)
 
           document.getElementById('signed-user').innerHTML = myEmail;
+          document.getElementById('navBar').classList.remove('d-none');
+          document.getElementById('bodyContainer').classList.remove('d-none');
+          document.getElementById('loadingBar').classList.add('d-none');
         }else{
           window.location.href = 'login.html'
         }
@@ -793,7 +803,7 @@
                 </td>
                 <td> ${item.username} </td>
                 <td>
-                ${item.useremail}
+                    ${item.useremail}
                 </td>
                 <td> ${item.usernumber || "-- --"} </td>
                 <td> 
@@ -974,7 +984,7 @@
                       '<label class="badge badge-gradient-warning">ARRIVED</label>'
                     }
                   </td>
-                  <td> ${new Date(item.orderDate).toUTCString() || "-- --"} </td>
+                  <td> ${new Date(item.orderDate).toLocaleString() || "-- --"} </td>
                   ${item.orderStatus != "Pending" ? (
                     `
                     <td> 
@@ -1026,7 +1036,7 @@
                         '<label class="badge badge-gradient-warning">ARRIVED</label>'
                       }
                     </td>
-                    <td> ${new Date(item.orderDate).toUTCString() || "-- --"} </td>
+                    <td> ${new Date(item.orderDate).toLocaleString() || "-- --"} </td>
                     <td> 
                       <button type="button" class="btn-sm btn btn-gradient-info btn-rounded btn-icon dispatch" id='${item.id}' data-bs-toggle="modal" data-bs-target="#dispatchTaskMod">
                         <i class="mdi mdi-share dispatch" id='${item.id}'></i>
@@ -1069,7 +1079,7 @@
                       '<label class="badge badge-gradient-warning">ARRIVED</label>'
                     }
                   </td>
-                  <td> ${new Date(item.orderDate).toUTCString() || "-- --"} </td>
+                  <td> ${new Date(item.orderDate).toLocaleString()|| "-- --"} </td>
                   <td> 
                     <button type="button" class="btn-sm btn btn-gradient-success btn-rounded btn-icon viewTaskSingle" id="${item.id}" data-bs-toggle="modal" data-bs-target="#myModal">
                       <i class="mdi mdi-eye viewTaskSingle" id="${item.id}"></i>
@@ -1107,7 +1117,7 @@
                       '<label class="badge badge-gradient-warning">ARRIVED</label>'
                     }
                   </td>
-                  <td> ${new Date(item.orderDate).toUTCString() || "-- --"} </td>
+                  <td> ${new Date(item.orderDate).toLocaleString() || "-- --"} </td>
                   <td> 
                     <button type="button" class="btn-sm btn btn-gradient-success btn-rounded btn-icon viewTaskSingle" id="${item.id}" data-bs-toggle="modal" data-bs-target="#myModal">
                       <i class="mdi mdi-eye viewTaskSingle" id="${item.id}"></i>
@@ -1212,16 +1222,16 @@
                       <p class="" style="color: #434a54;">${item.customerName}</p>
                     </div>
                     <div class="col-md-3">
-                      <p style="font-weight: bold; color: #16181b;">Order Date</p>
-                      <p class="" style="color: #434a54;">${new Date(item.orderDate).toUTCString()}</p>
+                      <p style="font-weight: bold; color: #16181b;">Date</p>
+                      <p class="" style="color: #434a54;">${new Date(item.orderDate).toLocaleString()}</p>
                     </div>
                     <div class="col-md-3">
-                      <p style="font-weight: bold; color: #16181b;">Order Status</p>
+                      <p style="font-weight: bold; color: #16181b;">Delivery Status</p>
                       <p class="" style="color: #434a54;">${item.orderStatus || "-- --"}</p>
                     </div>
                     <div class="col-md-3">
                       <p style="font-weight: bold; color: #16181b;">Delivery Date</p>
-                      <p class="" style="color: #434a54;">${item.deliveryDate ? (new Date(item.deliveryDate).toUTCString()): ("-- --")}</p>
+                      <p class="" style="color: #434a54;">${item.deliveryDate ? (new Date(item.deliveryDate).toLocaleString()): ("-- --")}</p>
                     </div>
                     <div class="col-md-3">
                       <p style="font-weight: bold; color: #16181b;">Category</p>

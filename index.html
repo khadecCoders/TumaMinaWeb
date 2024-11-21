@@ -188,6 +188,15 @@
             </div>
           </div>
 
+          <!--Change status Modal -->
+          <div class="modal fade" id="statusChangeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content" id="statusChangeContainer">
+                
+              </div>
+            </div>
+          </div>
+
           <!--Dispatch Modal -->
         <div class="modal fade" id="dispatchTaskMod" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -325,8 +334,8 @@
               </h3>
               <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
-                  <li class="breadcrumb-item active" aria-current="page">
-                    <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                  <li class="breadcrumb-item active menu-item" data-target="task_Add" aria-current="page">
+                    <button type="button" class="btn btn-sm btn-gradient-info btn-fw">Add Task</button>
                   </li>
                 </ul>
               </nav>
@@ -344,7 +353,7 @@
                             <th> Assignee </th>
                             <th> Customer </th>
                             <th> Status </th>
-                            <th> Placed </th>
+                            <th> Change Status </th>
                             <th> Dispatch </th>
                             <th> Details </th>
                             <th> Delete </th>
@@ -389,7 +398,7 @@
                             <th> Assignee </th>
                             <th> Customer </th>
                             <th> Status </th>
-                            <th> Placed </th>
+                            <th> Change Status </th>
                             <th> Dispatch </th>
                             <th> Details </th>
                             <th> Delete </th>
@@ -434,7 +443,7 @@
                             <th> Assignee </th>
                             <th> Customer </th>
                             <th> Status </th>
-                            <th> Placed </th>
+                            <th> Change Status </th>
                             <th> Details </th>
                             <th> Delete </th>
                           </tr>
@@ -478,7 +487,7 @@
                             <th> Assignee </th>
                             <th> Customer </th>
                             <th> Status </th>
-                            <th> Placed </th>
+                            <th> Change Status </th>
                             <th> Details </th>
                             <th> Delete </th>
                           </tr>
@@ -627,6 +636,222 @@
               </div>
             </div>
           </div>
+          <div class="content-wrapper d-none" id="task_Add">
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                  <i class="mdi mdi-file-document"></i>
+                </span> Add New Task
+              </h3>
+           
+            </div>
+            <div class="row">
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div style="height: 70vh; overflow: scroll;" class="card-body">
+                    <form class="form-sample">
+                      <p class="card-description"> Task Details </p>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Task Category</label>
+                            <div class="col-sm-9">
+                              <select class="form-select" id="taskCat">
+                                <option value="">Select category</option>
+                                <option value="Fast Food">Fast food delivery</option>
+                                <option value="Grocery">Grocery delivery</option>
+                                <option value="Package">Package delivery</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Task Type</label>
+                            <div class="col-sm-9">
+                              <select class="form-select" id="taskType">
+                                <option value="">Select type</option>
+                                <option value="Pick up">Pick & drop</option>
+                                <option value="Delivery">Buy & delivery</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Customer</label>
+                            <div class="col-sm-9">
+                              <select class="form-select" id="customer">
+                                <option class="def" value="">Select customer if they have an account</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Customer Name</label>
+                            <div class="col-sm-9">
+                              <input type="text" id="customername" class="form-control" value="" placeholder="Enter if they don't have an account"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Task list</label>
+                            <div class="col-sm-9">
+                              <textarea type="text" class="form-control" id="taskList"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <p class="card-description" id="shophd"> Shop / Restaurant details </p>
+                      <div class="row" id="shoprow">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Select shop</label>
+                            <div class="col-sm-9">
+                              <select class="form-select" id="shopSelect">
+                                <option value="">Select shop if it's listed</option>
+                                
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Shop Name</label>
+                            <div class="col-sm-9">
+                              <input type="text" id="shopname" class="form-control" value="" placeholder="Enter if it's not listed"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row" id="shoprow2">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">Shop address</label>
+                              <div class="col-sm-9">
+                                <textarea type="text" class="form-control" id="shopadd"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+              
+                      <p class="card-description" id="pickupHd"> Pick up location </p>
+                      <div class="row" id="pickupRow">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Address</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="pickupAddress"/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Room #</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="pickupApartNo"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row" id="pickupRow2">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Contact name</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="pickupName"/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Contact phone</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="pickupPhone"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+              
+                      <p class="card-description"> Destination location </p>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Address</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="destAddress"/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Room #</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="apartNo"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Recipient name</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="recipientName"/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Recipient phone</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" id="recipientPhone"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Additional Info</label>
+                            <div class="col-sm-9">
+                              <textarea type="text" class="form-control" id="addInfo"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Proof of delivery</label>
+                            <div class="col-sm-9">
+                              <select class="form-select" id="pod">
+                                <option value="QR Code & ID Photo">Qr Code & ID Photo</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-gradient-success me-2" id="submitBtn">Submit</button>
+                      <button class="btn btn-light" id="cancelBtn">Cancel</button>
+                      <div class="loading" id="loading" style="align-items: center;">
+                        <div class="spinner-border text-success" role="status">
+                          <span class="sr-only">Loading...</span>
+                        </div>
+                        <p style="margin: 0px; padding-left: 10px;">Loading please wait</p>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
           <footer class="footer">
@@ -739,6 +964,28 @@
       }
     });
 
+    onValue(ref(database, '/Shops'), async(snapshot) => {
+      const data = snapshot.val();
+
+      if (data) {
+        const dataObjectsArray = Object.keys(data)
+            .map(key => ({
+                id: key,
+                ...data[key]
+        }));
+
+
+        if(dataObjectsArray != null){
+          document.getElementById("shopSelect").innerHTML += dataObjectsArray.map((item) => {
+            return `<option value="${item.id}">${item.shopName}</option>`
+          })
+        } else {
+          document.getElementById("shopSelect").innerHTML += `<option value="">No shops available, just add the shop name & address</option>`
+        }
+      }
+    })
+
+
     onValue(ref(database, '/users'), async(snapshot) => {
       const data = snapshot.val();
 
@@ -753,6 +1000,12 @@
         const general = dataObjectsArray.filter((item) => item.accountType == "Public")
         const bikers = dataObjectsArray.filter((item) => item.accountType == "Biker")
         myBikers = await bikers;
+
+        if(general){
+          document.getElementById("customer").innerHTML += general.map((item) => {
+            return `<option value="${item.id}">${item.username}</option>`
+          })
+        }
 
         document.getElementById("userCount").innerHTML = dataObjectsArray.length;
         document.getElementById("bikerCount").innerHTML = bikers.length;
@@ -981,12 +1234,17 @@
                       item.orderStatus == "Delivered" ? '<label class="badge badge-gradient-success">DELIVERED</label>' : 
                       item.orderStatus == "In Transit" ? '<label class="badge badge-gradient-info">IN TRANSIT</label>' : 
                       item.orderStatus == "Pending" ? '<label class="badge badge-gradient-danger">PENDING</label>' : 
+                      item.orderStatus == "Cancelled" ? '<label class="badge badge-gradient-danger">CANCELLED</label>' : 
                       '<label class="badge badge-gradient-warning">ARRIVED</label>'
                     }
                   </td>
-                  <td> ${new Date(item.orderDate).toLocaleString() || "-- --"} </td>
                   ${item.orderStatus != "Pending" ? (
                     `
+                  <td>
+                     <button disabled type="button" class="btn-sm btn btn-gradient-dark btn-rounded btn-icon changeStatus" id='${item.id}' data-bs-toggle="modal" data-bs-target="#statusChangeModal">
+                        <i class="mdi mdi-layers-edit changeStatus" id='${item.id}'></i>
+                      </button>   
+                  </td>
                     <td> 
                       <button disabled type="button" class="btn-sm btn btn-gradient-info btn-rounded btn-icon dispatch" id='${item.id}' data-bs-toggle="modal" data-bs-target="#dispatchTaskMod">
                         <i class="mdi mdi-share dispatch" id='${item.id}'></i>
@@ -995,6 +1253,11 @@
                     `
                   ):(
                     `
+                     <td>
+                     <button type="button" class="btn-sm btn btn-gradient-dark btn-rounded btn-icon changeStatus" id='${item.id}' data-bs-toggle="modal" data-bs-target="#statusChangeModal">
+                        <i class="mdi mdi-layers-edit changeStatus" id='${item.id}'></i>
+                      </button>   
+                  </td>
                     <td> 
                       <button type="button" class="btn-sm btn btn-gradient-info btn-rounded btn-icon dispatch" id='${item.id}' data-bs-toggle="modal" data-bs-target="#dispatchTaskMod">
                         <i class="mdi mdi-share dispatch" id='${item.id}'></i>
@@ -1028,15 +1291,20 @@
                       <img src="assets/images/faces-clipart/pic-3.png" class="me-2" alt="image"> ${item.biker || "-- --"}
                     </td>
                     <td> ${item.customerName || "-- --"} </td>
-                    <td>
-                      ${
-                        item.orderStatus == "Delivered" ? '<label class="badge badge-gradient-success">DELIVERED</label>' : 
-                        item.orderStatus == "In Transit" ? '<label class="badge badge-gradient-info">IN TRANSIT</label>' : 
-                        item.orderStatus == "Pending" ? '<label class="badge badge-gradient-danger">PENDING</label>' : 
-                        '<label class="badge badge-gradient-warning">ARRIVED</label>'
-                      }
-                    </td>
-                    <td> ${new Date(item.orderDate).toLocaleString() || "-- --"} </td>
+                      <td>
+                    ${
+                      item.orderStatus == "Delivered" ? '<label class="badge badge-gradient-success">DELIVERED</label>' : 
+                      item.orderStatus == "In Transit" ? '<label class="badge badge-gradient-info">IN TRANSIT</label>' : 
+                      item.orderStatus == "Pending" ? '<label class="badge badge-gradient-danger">PENDING</label>' : 
+                      item.orderStatus == "Cancelled" ? '<label class="badge badge-gradient-danger">CANCELLED</label>' : 
+                      '<label class="badge badge-gradient-warning">ARRIVED</label>'
+                    }
+                  </td>
+                  <td>
+                     <button type="button" class="btn-sm btn btn-gradient-dark btn-rounded btn-icon changeStatus" id='${item.id}' data-bs-toggle="modal" data-bs-target="#statusChangeModal">
+                        <i class="mdi mdi-layers-edit changeStatus" id='${item.id}'></i>
+                      </button>   
+                  </td>
                     <td> 
                       <button type="button" class="btn-sm btn btn-gradient-info btn-rounded btn-icon dispatch" id='${item.id}' data-bs-toggle="modal" data-bs-target="#dispatchTaskMod">
                         <i class="mdi mdi-share dispatch" id='${item.id}'></i>
@@ -1134,6 +1402,76 @@
                 return ``;
               }
             }).join("");
+
+        // Change task status
+        var editTaskBtns = document.querySelectorAll(".changeStatus");
+        for (let editBtn of editTaskBtns) {
+            editBtn.addEventListener("click", (e) => {
+              let task_id = e.target.id;
+              dataObjectsArray.map((item) => {
+                if(item.id == task_id){
+                  document.getElementById("statusChangeContainer").innerHTML = `
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Change Status</h5>
+                    <button type="button" class="close btn" data-bs-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Click a button to change task status for task with ID: ${task_id} 
+                    <div class="pt-3">
+                      <button type="button" class="btn btn-gradient-danger btn-rounded btn-fw confirmStatChange" id="${task_id}" data-target="${item.bikerID}">Cancelled</button>  
+                    </div>
+                  </div>
+                  <div class="loading" id="loading" style="align-items: center;">
+                    <div class="spinner-border text-success" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                    <p style="margin: 0px; padding-left: 10px;">Loading please wait</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="closeCanel" data-bs-dismiss="modal">Cancel</button>
+                  </div>
+                  `
+
+                  var confirmStatusChange = document.querySelectorAll(".confirmStatChange");
+                  for (let statBtn of confirmStatusChange) {
+                    statBtn.addEventListener("click", (e) => {
+                    document.getElementById('loading').classList.add('d-flex');
+
+                      let task_id = e.target.id;
+                      let val = e.target.innerHTML;
+                      let bikerID = e.target.dataset.target;  
+
+                      const currentBiker = myBikers.filter((item) => item.id == bikerID);
+
+                      update(ref(database, "Orders/" + task_id), {
+                        orderStatus: val,
+                      }).then(async() => {
+                        if(currentBiker.length > 0 && currentBiker[0].expoToken){
+                          const res = fetch(`https://us-central1-tumamina-e39e7.cloudfunctions.net/helloWorld?token=${currentBiker[0].expoToken}&title=Delivery Cancelled&message=The delivery assigned to you has been cancelled by admin.`);
+                          alert("Task assigned to " +currentBiker[0].username +" cancelled");
+                          document.getElementById('closeCanel').click();
+
+                        }else{
+                          alert("Task assigned to " +currentBiker[0].username+ "cancelled, but the driver didn't get the notification alert them manually. This could be because they logged out of their account.");
+                          document.getElementById('closeCanel').click();
+                          
+                        }  
+                          document.getElementById('loading').classList.remove('d-flex');
+                        })
+                        .catch((error) => {
+                          let errorMessage = error.message.replace(/[()]/g, " ");
+                          let errorMsg = errorMessage.replace('Firebase:', "");
+                          document.getElementById('loading').classList.remove('d-flex');
+                          alert("unsuccessful, Error: " +errorMsg);
+                        });
+                    })
+                  }
+                }
+              })
+            })
+        }
 
         // REMOVE AN ORDER
         var deleteTaskBtns = document.querySelectorAll(".delete");
@@ -1322,16 +1660,33 @@
                   let bikerID = e.target.id;    
                   let bikerName = e.target.dataset.target;  
 
+                  const currentBiker = myBikers.filter((item) => item.id == bikerID);
+                  console.log(bikerID)
+                  if(currentBiker){
+                    console.log("Token: " + currentBiker[0].expoToken)
+                  }
+
                   await update(ref(database, 'Orders/' + taskID), {
                   biker: bikerName,
-                  dispatched: true
+                  dispatched: true,
+                  bikerID: bikerID
                   }).then(async() => {
                   await update(ref(database, 'users/' + bikerID), {
                     available: false
-                  }).then(() => {
-                      alert("Task assigned to "+bikerName);
+                  }).then(async() => {
+                      if(currentBiker && currentBiker[0].expoToken){
+                        const res = fetch(`https://us-central1-tumamina-e39e7.cloudfunctions.net/helloWorld?token=${currentBiker[0].expoToken}&title=New task from the Admin&message=You've been assigned a new delivery.`)
+                        console.log(res)
                       document.getElementById('loading').classList.remove('d-flex');
                       document.getElementById('closeDispatch').click();
+                        alert("Task assigned to " +bikerName);
+                      
+                      }else{
+
+                      document.getElementById('loading').classList.remove('d-flex');
+                      document.getElementById('closeDispatch').click();
+                        alert("Task assigned to " +bikerName+ ", but they didn't get the notification alert them manually. This could be because they logged out of their account.");
+                      }  
                   }).catch((error) => {
                             let errorMessage = error.message.replace(/[()]/g, " ");
                             let errorMsg = errorMessage.replace('Firebase:', "");
@@ -1339,15 +1694,18 @@
                             alert("unsuccessful, Error: " +errorMsg);
                           });
                   }).catch((error) => {
-                            let errorMessage = error.message.replace(/[()]/g, " ");
-                            let errorMsg = errorMessage.replace('Firebase:', "");
-                            document.getElementById('loading').classList.remove('d-flex');
-                            alert("unsuccessful, Error: " +errorMsg);
-                          });
+                    let errorMessage = error.message.replace(/[()]/g, " ");
+                    let errorMsg = errorMessage.replace('Firebase:', "");
+                    document.getElementById('loading').classList.remove('d-flex');
+                    alert("unsuccessful, Error: " +errorMsg);
+                  });
                 })
               }       
             })
           }
+
+          // Change status of the task
+          
       
       // Chart data
           (function ($) {
@@ -1425,7 +1783,7 @@
                 new Chart(ctx, {
                   type: 'doughnut',
                   data: {
-                    labels: [`Pending ${pDels.length}`, `In Transit ${iTDels.length}`, `Delivered ${Dels.length}`],
+                    labels: [`In Transit ${iTDels.length}`,  `Delivered ${Dels.length}`, `Pending ${pDels.length}`],
                     datasets: [{
                       data: [pDels.length, iTDels.length, Dels.length],
                       backgroundColor: [gradientStrokeBlue, gradientStrokeGreen, gradientStrokeRed],
@@ -1490,10 +1848,157 @@
         alert("Task successfully removed");
       })
       .catch((error) => {
-        alert(error);
+        let errorMessage = error.message.replace(/[()]/g, " ");
+        let errorMsg = errorMessage.replace('Firebase:', "");
+        alert(errorMsg);
       });
     }
 
+    // Adding of tasks
+    var customerID;
+    var customerName;
+    var shopName;
+    var shopID;
+
+    document.getElementById("customer").addEventListener("change", (e) => {
+      customerName = document.getElementById("customer").children[document.getElementById("customer").selectedIndex].innerHTML;
+      customerID = document.getElementById("customer").value;
+      console.log(customerID)
+      if(document.getElementById("customer").value){document.getElementById('customername').value = customerName;}
+    })
+
+    document.getElementById("shopSelect").addEventListener("change", (e) => {
+      shopName = document.getElementById("shopSelect").children[document.getElementById("shopSelect").selectedIndex].innerHTML;
+      shopID = document.getElementById("shopSelect").value;
+      if(document.getElementById("shopSelect").value){document.getElementById('shopname').value = shopName;}
+    })
+
+    document.getElementById("taskType").addEventListener("change", (e) => {
+      if(document.getElementById("taskType").value == "Pick up"){
+        document.getElementById('pickupHd').classList.remove('d-none');
+        document.getElementById('pickupRow').classList.remove('d-none');
+        document.getElementById('pickupRow2').classList.remove('d-none');
+        document.getElementById('shophd').classList.add('d-none');
+        document.getElementById('shoprow').classList.add('d-none');
+        document.getElementById('shoprow2').classList.add('d-none');
+      } else if(document.getElementById("taskType").value == "Delivery"){
+        document.getElementById('shophd').classList.remove('d-none');
+        document.getElementById('shoprow').classList.remove('d-none');
+        document.getElementById('shoprow2').classList.remove('d-none');
+        document.getElementById('pickupHd').classList.add('d-none');
+        document.getElementById('pickupRow').classList.add('d-none');
+        document.getElementById('pickupRow2').classList.add('d-none');
+      } else{
+        // 
+        document.getElementById('shophd').classList.add('d-none');
+        document.getElementById('shoprow').classList.add('d-none');
+        document.getElementById('shoprow2').classList.add('d-none');
+        document.getElementById('pickupHd').classList.add('d-none');
+        document.getElementById('pickupRow').classList.add('d-none');
+        document.getElementById('pickupRow2').classList.add('d-none');
+      }
+    })
+
+    document.getElementById("submitBtn").addEventListener("click", (e) => {
+      e.preventDefault();
+      document.getElementById('loading').classList.add('d-flex');
+      push(ref(database, 'Orders/'), {
+        userId: customerID || 'None',
+        customerName: document.getElementById("customername").value,
+        biker: '',
+        orderDate: new Date().toISOString(),
+        deliveryDate: '',
+        delType: document.getElementById("taskType").value,
+        deliveryCat: document.getElementById("taskCat").value,
+        deliveryFee: 0,
+        packagePicture: "",
+        packagePicName: "",
+        orderStatus: 'Pending',
+        packageName:document.getElementById("taskList").value,    
+        addInfo: document.getElementById("addInfo").value, 
+        pickUpLoc: document.getElementById("pickupAddress").value, 
+        pickUpContName: document.getElementById("pickupName").value, 
+        pickUpNumber: document.getElementById("pickupPhone").value, 
+        pickUpRoomNo: document.getElementById("pickupApartNo").value, 
+        delLoc: document.getElementById("destAddress").value, 
+        delName: document.getElementById("recipientName").value, 
+        delBuild: "", 
+        delRoomNo: document.getElementById("apartNo").value, 
+        delPhone: document.getElementById("recipientPhone").value, 
+        addInstr: "", 
+        paymentMeth: 'Cash On Delivery',
+        shop: document.getElementById("shopname").value,
+        shopAdd: document.getElementById("shopadd").value,
+        pickUpCords: "pickUpCords",
+        delCords: "delCords",
+        proofOfDel: document.getElementById("pod").value,
+        receiveNotes: '',
+        idPicName: '',
+        idPicUrl: '',
+        paid: true,
+        dispatched: false,
+        bikerID: ""
+
+    }).then(async() => {
+      const res = fetch(`https://us-central1-tumamina-e39e7.cloudfunctions.net/sendNotifications?title=New Delivery&message=${document.getElementById("customername").value} has placed a ${document.getElementById("taskType").value} delivery for ${document.getElementById("taskCat").value}.`)
+         document.getElementById('loading').classList.remove('d-flex');
+         alert("Task added successfully!")
+   
+         // Clear states
+         document.getElementById("customername").value = "";
+         document.getElementById("taskType").value = "";
+         document.getElementById("taskCat").value = "";
+         document.getElementById("taskList").value = "";
+         document.getElementById("addInfo").value = "";
+         document.getElementById("pickupAddress").value = "";
+         document.getElementById("pickupName").value = "";
+         document.getElementById("pickupPhone").value = "";
+         document.getElementById("pickupApartNo").value = "";
+         document.getElementById("destAddress").value = "";
+         document.getElementById("recipientName").value = "";
+         document.getElementById("apartNo").value = "";
+         document.getElementById("recipientPhone").value = "";
+         document.getElementById("shopname").value = "";
+         document.getElementById("shopadd").value = "";
+         document.getElementById("pod").value = "";
+
+    }).catch((error) => {
+        setIsLoading(false)
+        let errorMessage = error.message.replace(/[()]/g, " ");
+        let errorMsg = errorMessage.replace('Firebase:', "");
+        document.getElementById('loading').classList.remove('d-flex');
+        alert("Error: " +errorMsg)
+    })
+
+    })
+    
+    document.getElementById("cancelBtn").addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // Clear states
+      document.getElementById("customername").value = "";
+      document.getElementById("taskType").value = "";
+      document.getElementById("taskCat").value = "";
+      document.getElementById("taskList").value = "";
+      document.getElementById("addInfo").value = "";
+      document.getElementById("pickupAddress").value = "";
+      document.getElementById("pickupName").value = "";
+      document.getElementById("pickupPhone").value = "";
+      document.getElementById("pickupApartNo").value = "";
+      document.getElementById("destAddress").value = "";
+      document.getElementById("recipientName").value = "";
+      document.getElementById("apartNo").value = "";
+      document.getElementById("recipientPhone").value = "";
+      document.getElementById("shopname").value = "";
+      document.getElementById("shopadd").value = "";
+      document.getElementById("pod").value = "";
+
+      document.getElementById('dashB').classList.remove('d-none');
+      document.getElementById('task_Add').classList.add('d-none');
+    })
+
+
+    // Sign the user out
     document.getElementById("userLogout").addEventListener("click", () => {
         signOut(auth)
           .then(() => {

@@ -838,13 +838,25 @@
                           </div>
                         </div>
                       </div>
-                      <button type="submit" class="btn btn-gradient-success me-2" id="submitBtn">Submit</button>
-                      <button class="btn btn-light" id="cancelBtn">Cancel</button>
-                      <div class="loading" id="loading" style="align-items: center;">
-                        <div class="spinner-border text-success" role="status">
-                          <span class="sr-only">Loading...</span>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Delivery Fee</label>
+                            <div class="col-sm-9">
+                              <input type="number" class="form-control" id="price"/>
+                            </div>
+                          </div>
                         </div>
-                        <p style="margin: 0px; padding-left: 10px;">Loading please wait</p>
+                        <div class="col-md-6">
+                          <button type="submit" class="btn btn-gradient-success me-2" id="submitBtn">Submit</button>
+                          <button class="btn btn-light" id="cancelBtn">Cancel</button>
+                          <div class="loading" id="loading" style="align-items: center;">
+                            <div class="spinner-border text-success" role="status">
+                              <span class="sr-only">Loading...</span>
+                            </div>
+                            <p style="margin: 0px; padding-left: 10px;">Loading please wait</p>
+                          </div>
+                        </div>
                       </div>
                     </form>
                   </div>
@@ -1783,9 +1795,9 @@
                 new Chart(ctx, {
                   type: 'doughnut',
                   data: {
-                    labels: [`In Transit ${iTDels.length}`,  `Delivered ${Dels.length}`, `Pending ${pDels.length}`],
+                    labels: [ `In Transit ${iTDels.length}`, `Delivered ${Dels.length}`, `Pending ${pDels.length}`],
                     datasets: [{
-                      data: [pDels.length, iTDels.length, Dels.length],
+                      data: [iTDels.length, Dels.length, pDels.length],
                       backgroundColor: [gradientStrokeBlue, gradientStrokeGreen, gradientStrokeRed],
                       hoverBackgroundColor: [
                         gradientStrokeBlue,
@@ -1899,77 +1911,127 @@
       }
     })
 
+      function validateInputs(){
+        if(
+          document.getElementById("taskType").value != "" &&
+          document.getElementById("taskType").value == "Pick up"
+        ){
+          // Selected pick and drop
+          if(
+            document.getElementById("customername").value != "" &&
+            document.getElementById("taskType").value != "" &&
+            document.getElementById("taskCat").value != "" &&
+            document.getElementById("taskList").value != "" &&
+            document.getElementById("pickupAddress").value != "" &&
+            document.getElementById("destAddress").value != "" &&
+            document.getElementById("pod").value != "" &&
+            document.getElementById("price").value != ""
+          ){
+            return true
+          }else {
+            return false
+          }
+        }else if(
+          document.getElementById("taskType").value != "" &&
+          document.getElementById("taskType").value == "Delivery"
+        ){
+          // Selected buy and delivery
+          if(
+            document.getElementById("customername").value != "" &&
+            document.getElementById("taskType").value != "" &&
+            document.getElementById("taskCat").value != "" &&
+            document.getElementById("taskList").value != "" &&
+            document.getElementById("shopname").value != "" &&
+            document.getElementById("shopadd").value != "" &&
+            document.getElementById("destAddress").value != "" &&
+            document.getElementById("pod").value != "" &&
+            document.getElementById("price").value != ""
+          ){
+            return true
+          }else {
+            return false
+          }
+        } else{
+          return false
+        }
+      }
+   
     document.getElementById("submitBtn").addEventListener("click", (e) => {
       e.preventDefault();
-      document.getElementById('loading').classList.add('d-flex');
-      push(ref(database, 'Orders/'), {
-        userId: customerID || 'None',
-        customerName: document.getElementById("customername").value,
-        biker: '',
-        orderDate: new Date().toISOString(),
-        deliveryDate: '',
-        delType: document.getElementById("taskType").value,
-        deliveryCat: document.getElementById("taskCat").value,
-        deliveryFee: 0,
-        packagePicture: "",
-        packagePicName: "",
-        orderStatus: 'Pending',
-        packageName:document.getElementById("taskList").value,    
-        addInfo: document.getElementById("addInfo").value, 
-        pickUpLoc: document.getElementById("pickupAddress").value, 
-        pickUpContName: document.getElementById("pickupName").value, 
-        pickUpNumber: document.getElementById("pickupPhone").value, 
-        pickUpRoomNo: document.getElementById("pickupApartNo").value, 
-        delLoc: document.getElementById("destAddress").value, 
-        delName: document.getElementById("recipientName").value, 
-        delBuild: "", 
-        delRoomNo: document.getElementById("apartNo").value, 
-        delPhone: document.getElementById("recipientPhone").value, 
-        addInstr: "", 
-        paymentMeth: 'Cash On Delivery',
-        shop: document.getElementById("shopname").value,
-        shopAdd: document.getElementById("shopadd").value,
-        pickUpCords: "pickUpCords",
-        delCords: "delCords",
-        proofOfDel: document.getElementById("pod").value,
-        receiveNotes: '',
-        idPicName: '',
-        idPicUrl: '',
-        paid: true,
-        dispatched: false,
-        bikerID: ""
+      if(validateInputs()){
+          document.getElementById('loading').classList.add('d-flex');
+          push(ref(database, 'Orders/'), {
+            userId: customerID || 'None',
+            customerName: document.getElementById("customername").value,
+            biker: '',
+            orderDate: new Date().toISOString(),
+            deliveryDate: '',
+            delType: document.getElementById("taskType").value,
+            deliveryCat: document.getElementById("taskCat").value,
+            deliveryFee: Number(document.getElementById("price").value),
+            packagePicture: "",
+            packagePicName: "",
+            orderStatus: 'Pending',
+            packageName:document.getElementById("taskList").value,    
+            addInfo: document.getElementById("addInfo").value, 
+            pickUpLoc: document.getElementById("pickupAddress").value, 
+            pickUpContName: document.getElementById("pickupName").value, 
+            pickUpNumber: document.getElementById("pickupPhone").value, 
+            pickUpRoomNo: document.getElementById("pickupApartNo").value, 
+            delLoc: document.getElementById("destAddress").value, 
+            delName: document.getElementById("recipientName").value, 
+            delBuild: "", 
+            delRoomNo: document.getElementById("apartNo").value, 
+            delPhone: document.getElementById("recipientPhone").value, 
+            addInstr: "", 
+            paymentMeth: 'Cash On Delivery',
+            shop: document.getElementById("shopname").value,
+            shopAdd: document.getElementById("shopadd").value,
+            pickUpCords: "pickUpCords",
+            delCords: "delCords",
+            proofOfDel: document.getElementById("pod").value,
+            receiveNotes: '',
+            idPicName: '',
+            idPicUrl: '',
+            paid: true,
+            dispatched: false,
+            bikerID: ""
 
-    }).then(async() => {
-      const res = fetch(`https://us-central1-tumamina-e39e7.cloudfunctions.net/sendNotifications?title=New Delivery&message=${document.getElementById("customername").value} has placed a ${document.getElementById("taskType").value} delivery for ${document.getElementById("taskCat").value}.`)
-         document.getElementById('loading').classList.remove('d-flex');
-         alert("Task added successfully!")
-   
-         // Clear states
-         document.getElementById("customername").value = "";
-         document.getElementById("taskType").value = "";
-         document.getElementById("taskCat").value = "";
-         document.getElementById("taskList").value = "";
-         document.getElementById("addInfo").value = "";
-         document.getElementById("pickupAddress").value = "";
-         document.getElementById("pickupName").value = "";
-         document.getElementById("pickupPhone").value = "";
-         document.getElementById("pickupApartNo").value = "";
-         document.getElementById("destAddress").value = "";
-         document.getElementById("recipientName").value = "";
-         document.getElementById("apartNo").value = "";
-         document.getElementById("recipientPhone").value = "";
-         document.getElementById("shopname").value = "";
-         document.getElementById("shopadd").value = "";
-         document.getElementById("pod").value = "";
+        }).then(async() => {
+          const res = fetch(`https://us-central1-tumamina-e39e7.cloudfunctions.net/sendNotifications?title=New Delivery&message=${document.getElementById("customername").value} has placed a ${document.getElementById("taskType").value} delivery for ${document.getElementById("taskCat").value}.`)
+            document.getElementById('loading').classList.remove('d-flex');
+            alert("Task added successfully!")
+      
+            // Clear states
+            document.getElementById("customername").value = "";
+            document.getElementById("taskType").value = "";
+            document.getElementById("taskCat").value = "";
+            document.getElementById("taskList").value = "";
+            document.getElementById("addInfo").value = "";
+            document.getElementById("pickupAddress").value = "";
+            document.getElementById("pickupName").value = "";
+            document.getElementById("pickupPhone").value = "";
+            document.getElementById("pickupApartNo").value = "";
+            document.getElementById("destAddress").value = "";
+            document.getElementById("recipientName").value = "";
+            document.getElementById("apartNo").value = "";
+            document.getElementById("recipientPhone").value = "";
+            document.getElementById("shopname").value = "";
+            document.getElementById("shopadd").value = "";
+            document.getElementById("pod").value = "";
+            document.getElementById("price").value = "";
 
-    }).catch((error) => {
-        setIsLoading(false)
-        let errorMessage = error.message.replace(/[()]/g, " ");
-        let errorMsg = errorMessage.replace('Firebase:', "");
-        document.getElementById('loading').classList.remove('d-flex');
-        alert("Error: " +errorMsg)
-    })
 
+        }).catch((error) => {
+            setIsLoading(false)
+            let errorMessage = error.message.replace(/[()]/g, " ");
+            let errorMsg = errorMessage.replace('Firebase:', "");
+            document.getElementById('loading').classList.remove('d-flex');
+            alert("Error: " +errorMsg)
+        })
+      }else{
+        alert("Some inputs are not filled, make sure to fill all the inputs.")
+      }
     })
     
     document.getElementById("cancelBtn").addEventListener("click", (e) => {
@@ -1992,6 +2054,7 @@
       document.getElementById("shopname").value = "";
       document.getElementById("shopadd").value = "";
       document.getElementById("pod").value = "";
+      document.getElementById("price").value = "";
 
       document.getElementById('dashB').classList.remove('d-none');
       document.getElementById('task_Add').classList.add('d-none');

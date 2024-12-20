@@ -534,6 +534,7 @@
                             <th> Phone </th>
                             <th> Address </th>
                             <th> Edit </th>
+                            <th> WhatsApp </th>
                           </tr>
                         </thead>
                         <tbody id="adminsTable">
@@ -574,12 +575,11 @@
                             <th> # </th>
                             <th> Photo </th>
                             <th> Name </th>
-                            <th> Email </th>
                             <th> Phone </th>
                             <th> Bike Number </th>
                             <th> Deliveries </th>
-                            <th> Address </th>
                             <th> Edit </th>
+                            <th> WhatsApp </th>
                           </tr>
                         </thead>
                         <tbody id="bikersTable">
@@ -622,8 +622,8 @@
                             <th> Name </th>
                             <th> Email </th>
                             <th> Phone </th>
-                            <th> Address </th>
                             <th> Edit </th>
+                            <th> WhatsApp </th>
                           </tr>
                         </thead>
                         <tbody id="generalTable">
@@ -1037,20 +1037,29 @@
                   <img src="${item.profilePicture != "" ? item.profilePicture : "assets/images/faces-clipart/pic-4.png"}" class="me-2" alt="image">
                 </td>
                 <td> ${item.username} </td>
-                <td>
-                ${item.useremail}
-                </td>
                 <td> ${item.usernumber || "-- --"} </td>
                 <td> ${item.bikeNo || "-- --"} </td>
                 <td> ${item.deliveries} </td>
                 <td> 
-                  ${item.userAddress || "-- --"}
+                  <button type="button" class="btn-sm btn btn-gradient-success btn-rounded btn-icon editUser" id="${item.id}" data-bs-toggle="modal" data-bs-target="#editUserModal">
+                    <i class="mdi mdi-account-edit editUser" id="${item.id}"></i>
+                  </button> 
                 </td>
-                 <td> 
-                    <button type="button" class="btn-sm btn btn-gradient-success btn-rounded btn-icon editUser" id="${item.id}" data-bs-toggle="modal" data-bs-target="#editUserModal">
-                      <i class="mdi mdi-account-edit editUser" id="${item.id}"></i>
-                    </button> 
-                 </td>
+                <td> 
+                  ${item.usernumber ? (
+                   `
+                    <a href="https://api.whatsapp.com/send?phone=${item.usernumber}&text=Hie, this is Tuma Mina Admin" target="_blank" class="editUserWhatsapp">
+                        <i class="mdi mdi-whatsapp text-success" id="${item.id}"></i>
+                    </a> 
+                   `
+                  ):(
+                    `
+                    <a class="editUserWhatsapp">
+                        <i class="mdi mdi-whatsapp text-success" id="${item.id}"></i>
+                    </a> 
+                   `
+                  )}
+                </td>
               </tr>
             `;
             }).join("");
@@ -1079,6 +1088,21 @@
                       <i class="mdi mdi-account-edit editUser" id="${item.id}"></i>
                     </button> 
                  </td>
+                   <td> 
+                  ${item.usernumber ? (
+                   `
+                    <a href="https://api.whatsapp.com/send?phone=${item.usernumber}&text=Hie, this is Tuma Mina Admin" target="_blank" class="editUserWhatsapp">
+                        <i class="mdi mdi-whatsapp text-success" id="${item.id}"></i>
+                    </a> 
+                   `
+                  ):(
+                    `
+                    <a class="editUserWhatsapp">
+                        <i class="mdi mdi-whatsapp text-success" id="${item.id}"></i>
+                    </a> 
+                   `
+                  )}
+                </td>
               </tr>
             `;
             }).join("");
@@ -1099,14 +1123,26 @@
                 ${item.useremail}
                 </td>
                 <td> ${item.usernumber || "-- --"} </td>
-                <td> 
-                  ${item.userAddress || "-- --"}
-                </td>
                  <td> 
                     <button type="button" class="btn-sm btn btn-gradient-success btn-rounded btn-icon editUser" id="${item.id}" data-bs-toggle="modal" data-bs-target="#editUserModal">
                       <i class="mdi mdi-account-edit editUser" id="${item.id}"></i>
                     </button> 
                  </td>
+                   <td> 
+                  ${item.usernumber ? (
+                   `
+                    <a href="https://api.whatsapp.com/send?phone=${item.usernumber}&text=Hie, this is Tuma Mina Admin" target="_blank" class="editUserWhatsapp">
+                        <i class="mdi mdi-whatsapp text-success" id="${item.id}"></i>
+                    </a> 
+                   `
+                  ):(
+                    `
+                    <a class="editUserWhatsapp">
+                        <i class="mdi mdi-whatsapp text-success" id="${item.id}"></i>
+                    </a> 
+                   `
+                  )}
+                </td>
               </tr>
             `;
             }).join("");
@@ -1137,8 +1173,8 @@
                             <input disabled type="text" class="form-control" id="recipient-email" value="${item.useremail}">
                           </div>
                           <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">User Phone:</label>
-                            <input type="text" class="form-control" id="recipient-phone" value="${item.usernumber}">
+                            <label for="recipient-name" class="col-form-label">User Phone (MUST begin with 263 & not contain spaces):</label>
+                            <input placeholder="eg 26370000000" type="text" class="form-control" id="recipient-phone" value="${item.usernumber}">
                           </div>
                           <div class="form-group">
                             <label for="exampleFormControlSelect2">Account Type</label>

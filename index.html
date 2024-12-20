@@ -1496,16 +1496,20 @@
                       update(ref(database, "Orders/" + task_id), {
                         orderStatus: val,
                       }).then(async() => {
-                        if(currentBiker.length > 0 && currentBiker[0].expoToken){
-                          const res = fetch(`https://us-central1-tumamina-e39e7.cloudfunctions.net/helloWorld?token=${currentBiker[0].expoToken}&title=Delivery Cancelled&message=The delivery assigned to you has been cancelled by admin.`);
-                          alert("Task assigned to " +currentBiker[0].username +" cancelled");
-                          document.getElementById('closeCanel').click();
+                        if(val == "Cancelled"){
+                            if(currentBiker.length > 0 && currentBiker[0].expoToken){
+                              const res = fetch(`https://us-central1-tumamina-e39e7.cloudfunctions.net/helloWorld?token=${currentBiker[0].expoToken}&title=Delivery Cancelled&message=The delivery assigned to you has been cancelled by admin.`);
+                              alert("Task assigned to " +currentBiker[0].username +" cancelled");
+                              document.getElementById('closeCanel').click();
 
-                        }else{
-                          alert("Task assigned to " +currentBiker[0].username+ "cancelled, but the driver didn't get the notification alert them manually. This could be because they logged out of their account.");
-                          document.getElementById('closeCanel').click();
-                          
-                        }  
+                            }else{
+                              alert("Task assigned to " +currentBiker[0].username+ "cancelled, but the driver didn't get the notification alert them manually. This could be because they logged out of their account.");
+                              document.getElementById('closeCanel').click();
+                              
+                            }
+                          } else {
+                            
+                          } 
                           document.getElementById('loading').classList.remove('d-flex');
                         })
                         .catch((error) => {
